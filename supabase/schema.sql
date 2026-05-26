@@ -2,7 +2,7 @@
 
 -- Users Table
 CREATE TABLE users (
-  id UUID REFERENCES auth.users NOT NULL PRIMARY KEY,
+  id UUID NOT NULL PRIMARY KEY,
   phone TEXT UNIQUE NOT NULL,
   name TEXT,
   role TEXT DEFAULT 'member' CHECK (role IN ('member', 'coach')),
