@@ -36,7 +36,7 @@ export default function OnboardingPage() {
         // Let's assume we use an upsert instead.
         const { error: upsertError } = await supabase
             .from('users')
-            .upsert({ id: user.id, phone: user.phone, name: name.trim() });
+            .upsert({ id: user.id, email: user.email, name: name.trim() });
             
         if (upsertError) throw upsertError;
       }

@@ -27,19 +27,8 @@ export async function proxy(request: NextRequest) {
     }
   )
 
-  let user = null;
-  const mockPhone = request.cookies.get('mock_user_phone')?.value;
-  
-  if (mockPhone) {
-    user = {
-      id: '00000000-0000-0000-0000-000000000000', // Mock UUID
-      phone: mockPhone,
-      role: 'authenticated'
-    } as any;
-  } else {
-    const { data } = await supabase.auth.getUser()
-    user = data.user;
-  }
+  const { data } = await supabase.auth.getUser()
+  const user = data.user;
 
   const isCoachRoute = request.nextUrl.pathname.startsWith('/coach')
   const isMemberRoute = ['/dashboard', '/plans', '/shop', '/cart', '/orders', '/subscribe'].some(route => request.nextUrl.pathname.startsWith(route))
@@ -52,7 +41,7 @@ export async function proxy(request: NextRequest) {
   }
 
   if (user) {
-    const isCoach = user.phone === process.env.COACH_PHONE_NUMBER
+    const isCoach = user.email === process.env.COACH_EMAIL
 
     // If trying to access coach route but not a coach
     if (isCoachRoute && !isCoach) {

@@ -8,7 +8,7 @@ export async function markSubscriptionPaid(userId: string, planId: string) {
   const { data: { user } } = await supabase.auth.getUser();
 
   // Verify caller is coach
-  if (!user || user.phone !== process.env.COACH_PHONE_NUMBER) {
+  if (!user || user.email !== process.env.COACH_EMAIL) {
     throw new Error("Unauthorized");
   }
 
@@ -36,7 +36,7 @@ export async function createPlan(formData: FormData) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user || user.phone !== process.env.COACH_PHONE_NUMBER) {
+  if (!user || user.email !== process.env.COACH_EMAIL) {
     throw new Error("Unauthorized");
   }
 
@@ -62,7 +62,7 @@ export async function createProduct(formData: FormData) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user || user.phone !== process.env.COACH_PHONE_NUMBER) throw new Error("Unauthorized");
+  if (!user || user.email !== process.env.COACH_EMAIL) throw new Error("Unauthorized");
 
   const name = formData.get("name") as string;
   const price = formData.get("price") as string;
@@ -98,7 +98,7 @@ export async function markOrderShipped(orderId: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user || user.phone !== process.env.COACH_PHONE_NUMBER) throw new Error("Unauthorized");
+  if (!user || user.email !== process.env.COACH_EMAIL) throw new Error("Unauthorized");
 
   const { error } = await supabase
     .from('orders')

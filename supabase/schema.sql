@@ -2,8 +2,8 @@
 
 -- Users Table
 CREATE TABLE users (
-  id UUID NOT NULL PRIMARY KEY,
-  phone TEXT UNIQUE NOT NULL,
+  id UUID REFERENCES auth.users NOT NULL PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
   name TEXT,
   role TEXT DEFAULT 'member' CHECK (role IN ('member', 'coach')),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
