@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LayoutDashboard, Users, CreditCard, Package, ShoppingCart, List } from 'lucide-react';
+import { LayoutDashboard, Users, CreditCard, Package, ShoppingCart, Settings } from 'lucide-react';
 
 export default function CoachLayout({
   children,
@@ -28,12 +28,6 @@ export default function CoachLayout({
               </Link>
             </li>
             <li>
-              <Link href="/coach/plans" className="flex items-center px-3 py-3 text-neutral-300 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">
-                <List size={20} className="mr-3" />
-                Plans
-              </Link>
-            </li>
-            <li>
               <Link href="/coach/payments" className="flex items-center px-3 py-3 text-neutral-300 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">
                 <CreditCard size={20} className="mr-3" />
                 Payments
@@ -53,6 +47,13 @@ export default function CoachLayout({
             </li>
           </ul>
         </nav>
+        {/* Settings at bottom of sidebar */}
+        <div className="border-t border-neutral-800 px-3 py-4">
+          <Link href="/coach/settings" className="flex items-center px-3 py-3 text-neutral-300 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">
+            <Settings size={20} className="mr-3" />
+            Settings
+          </Link>
+        </div>
       </aside>
 
       {/* Main Content */}

@@ -31,7 +31,7 @@ export async function proxy(request: NextRequest) {
   const user = data.user;
 
   const isCoachRoute = request.nextUrl.pathname.startsWith('/coach')
-  const isMemberRoute = ['/dashboard', '/plans', '/shop', '/cart', '/orders', '/subscribe'].some(route => request.nextUrl.pathname.startsWith(route))
+  const isMemberRoute = ['/dashboard', '/plans', '/shop', '/cart', '/orders', '/subscribe', '/profile', '/onboarding'].some(route => request.nextUrl.pathname.startsWith(route))
 
   if (!user && (isCoachRoute || isMemberRoute)) {
     // If not logged in, redirect to login page

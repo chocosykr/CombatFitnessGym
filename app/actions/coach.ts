@@ -29,7 +29,6 @@ export async function markSubscriptionPaid(userId: string, planId: string) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/coach/members");
-  return { success: true };
 }
 
 export async function createPlan(formData: FormData) {
@@ -54,8 +53,7 @@ export async function createPlan(formData: FormData) {
 
   if (error) throw new Error(error.message);
 
-  revalidatePath("/coach/plans");
-  return { success: true };
+  revalidatePath("/coach/settings");
 }
 
 export async function createProduct(formData: FormData) {
@@ -91,7 +89,6 @@ export async function createProduct(formData: FormData) {
   await supabase.from('inventory').insert(invInserts);
 
   revalidatePath("/coach/inventory");
-  return { success: true };
 }
 
 export async function markOrderShipped(orderId: string) {
@@ -108,6 +105,5 @@ export async function markOrderShipped(orderId: string) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/coach/orders");
-  return { success: true };
 }
 

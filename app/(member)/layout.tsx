@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Home, ShoppingBag, ClipboardList, Info } from 'lucide-react';
+import { Home, ShoppingBag, ClipboardList, User } from 'lucide-react';
 
 export default function MemberLayout({
   children,
@@ -34,9 +34,9 @@ export default function MemberLayout({
             </Link>
           </li>
           <li>
-            <Link href="/gym-info" className="flex flex-col items-center justify-center w-full h-full text-neutral-400 hover:text-white">
-              <Info size={24} />
-              <span className="text-xs mt-1">Info</span>
+            <Link href="/profile" className="flex flex-col items-center justify-center w-full h-full text-neutral-400 hover:text-white">
+              <User size={24} />
+              <span className="text-xs mt-1">Profile</span>
             </Link>
           </li>
         </ul>

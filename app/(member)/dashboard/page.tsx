@@ -17,7 +17,7 @@ export default async function DashboardPage() {
     .from("users")
     .select("*")
     .eq("id", user.id)
-    .single();
+    .maybeSingle();
 
   // If no name, force onboarding
   if (!profile?.name) {
@@ -32,7 +32,7 @@ export default async function DashboardPage() {
     .in("status", ["active", "overdue"])
     .order("created_at", { ascending: false })
     .limit(1)
-    .single();
+    .maybeSingle();
 
   let daysRemaining = 0;
   if (sub) {
